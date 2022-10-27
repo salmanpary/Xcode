@@ -1,16 +1,40 @@
-import React from 'react'
+import React, { useState } from 'react'
+import {BsFillHandThumbsUpFill} from 'react-icons/bs'
+function FormBlock({key,setTables,tables}) {
+    const [data,setData] = useState({
+        key:key,
+        name:"",
+        type:"",
+        validation:""
 
-function FormBlock({key}) {
+    })
+    const handleClick = (e)=>{
+        for(var i=0;i<tables.fields.length;i++){
+            if(data.name.toLowerCase()===tables.fields[i].name.toLowerCase()){
+            alert('Field name already exists')
+            return
+            }
+        }
+        setTables({...tables,fields:[...tables.fields,data]})
+console.log(data)
+    }
+    const onChange = (e)=>{
+const {name,value} = e.target
+setData({
+    ...data,
+    [name]:value
+})
+    }
   return (
-    <div className="flex flex-col items-center mt-6 border-[1px] max-w-fit py-6 px-16 rounded-lg ">
+    <div className="flex flex-col items-center mt-6 border-[2px] max-w-fit py-6 px-16 rounded-lg ">
 
 <form class="w-full max-w-lg">
-  <div class="flex flex-wrap -mx-3 mb-6">
+  <div class="flex flex-wrap -mx-3 mb-2">
     <div class="w-full px-3">
       <label class="block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
         Field Name
       </label>
-      <input class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane"/>
+      <input onChange={onChange} name='name' value={data.name} class="appearance-none block w-full bg-gray-200 text-gray-700 border  rounded py-3 px-4  leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Jane"/>
      
     </div>
     
@@ -24,14 +48,18 @@ function FormBlock({key}) {
       </label>
       <div class="relative">
                 <select
+                name='type'
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
+                //   value={data.type}
+                  onChange={onChange}
                   
                 >
-                  <option>BTC</option>
-                  <option>ETH</option>
-                  <option>DOGECOIN</option>
-                  <option>SOLANA</option>
+                  <option className=''>STRING</option>
+                  <option>NUMERIC</option>
+                  <option disabled >DATE</option>
+                  <option disabled >ARRAY</option>
+                  
                  
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
@@ -57,12 +85,16 @@ function FormBlock({key}) {
                 <select
                   class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
                   id="grid-state"
+                  name='validation'
+                //   value={data.validation}
+                  onChange={onChange}
+
                   
                 >
-                  <option>BTC</option>
-                  <option>ETH</option>
-                  <option>DOGECOIN</option>
-                  <option>SOLANA</option>
+                  <option>UNIQUE</option>
+                  <option>NIL</option>
+                  <option disabled>EMAIL</option>
+                  <option disabled>MAX 10</option>
                  
                 </select>
                 <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-500">
@@ -77,6 +109,7 @@ function FormBlock({key}) {
               </div>
       </div>
     </div>
+    <div className="flex items-center cursor-pointer bg-bg-prm w-16 text-text-prm text-center justify-center rounded-lg opacity-90 mt-4 py-1 ml-auto" onClick={handleClick}> ok <BsFillHandThumbsUpFill /></div>
 </form>
     </div>
   )
