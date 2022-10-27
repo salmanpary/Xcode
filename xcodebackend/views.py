@@ -152,7 +152,7 @@ def xcode(request, tablename):
 def generatesnippet(request):
 
     def gpt3(stext):
-        openai.api_key = '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'
+        openai.api_key = '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'
         response = openai.Completion.create(
             engine = "davinci-instruct-beta",
             prompt = stext, temperature=0.1, max_tokens=15, top_p=1, frequency_penalty=0, presence_penalty=0
