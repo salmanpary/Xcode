@@ -79,10 +79,17 @@ def createtable(request):
     user_tables = ListOfTables.objects.all().filter(owner=User.objects.get(username='admin')).values_list( 'tableschema', flat=True)
     user_tables = list(user_tables)
     # print(user_tables)
+    user_tables_conv = []
+    for i in user_tables:
+        # print (i, type(i))
+        # print("***********************8")
+        j = i.replace("\'", "\"")
+        # print(json.loads(j), type(json.loads(j)))
+        user_tables_conv.append(json.loads(j))
 
     responsetosend = {
         "curruser":"admin",
-        "tables":user_tables
+        "tables":user_tables_conv
     }
     
     # return JsonResponse({"curruser":str(request.user)}) 
@@ -92,13 +99,24 @@ def createtable(request):
 # view for retrieving all the tables of the specified user   GET
 def getalltables(request):
     # responsetosend = {"curruser":""}
-    
     user_tables = ListOfTables.objects.all().filter(owner=User.objects.get(username="admin")).values_list( 'tableschema', flat=True)
+    # print("========================================")
+    # print(type(user_tables),user_tables)
+    # print("======================================")
     user_tables = list(user_tables)
-    # print(user_tables)
+    # print(type(user_tables),user_tables)
+    # print("======================================")
+    user_tables_conv = []
+    for i in user_tables:
+        # print (i, type(i))
+        # print("***********************8")
+        j = i.replace("\'", "\"")
+        # print(json.loads(j), type(json.loads(j)))
+        user_tables_conv.append(json.loads(j))
+    # print("==============================")
     responsetosend = {
         "curruser":"admin",
-        "tables":user_tables
+        "tables":user_tables_conv
     }
     return JsonResponse(responsetosend)
 
