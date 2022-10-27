@@ -1,5 +1,16 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 const Login = () => {
+  useEffect(() => {
+    axios.post("https://xcode321.herokuapp.com/login/", {
+      "username": "admin",
+      "password": "password"
+    }).then((res) => {
+      console.log(res)
+    }).catch((error) => {
+      console.log(error)
+    })
+  })
   return (
     <div className="h-screen flex justify-center items-center bg-[#041541]">
       <div class="w-full max-w-xs">

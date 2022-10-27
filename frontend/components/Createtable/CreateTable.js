@@ -1,15 +1,29 @@
+import axios from 'axios';
 import React, { useState } from 'react'
 import FormBlock from '../FormBlock'
 
 function CreateTable() {
+
+
+
     const [inputList, setInputList] = useState(1);
     const [tables,setTables] = useState({
         tablename:"",
         fields:[]
     })
+
+    const fetchApi = async(body)=>{
+        try {
+            
+            const resp = await axios.post('https://xcode321.herokuapp.com/tablecreate/',body)
+            console.log(resp.data)
+        } catch (error) {
+            console.log(error)
+        }
+    }
     const submitHanlder = (e)=>{
       var jsontable = JSON.stringify(tables)
-      console.log(jsontable)
+      fetchApi(jsontable)
     }
 
     const onAddBtnClick = (e) => {
@@ -22,6 +36,7 @@ function CreateTable() {
             [name]:value
         })
     }
+
     return (
         <div className='w-[80vw] min-h-screen'>
             <h2 className='text-4xl text-center font-bold mt-6'>Create Table</h2>

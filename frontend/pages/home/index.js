@@ -4,11 +4,11 @@ import React, { useEffect } from 'react'
 
 function Home() {
     const fetch1 = async()=>{
-        const response = await axios.get('https://xcode321.herokuapp.com/getalltables')
+        const response = await axios.get('/api/openai',{prompt})
         console.log(response)
     }
     useEffect(()=>{
-      axios.get("https://xcode321.herokuapp.com/getalltable").then((res)=>{
+      axios.get("https://xcode321.herokuapp.com/getalltables").then((res)=>{
         console.log(res)
       }).catch((error)=>{
         console.log(error)
