@@ -10,7 +10,12 @@ module.exports = {
       'bg-prm': '#041541',
       'text-prm':'#BFD1FF',
       'text-sec':'#041541'
+    },
+    backgroundImage: {
+      'hero': "url('/bg.png')",
+      
     }
+
   }
   },
   plugins: [],
