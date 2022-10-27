@@ -1,9 +1,9 @@
 import React from 'react'
-
-const ApiDocsPage = () => {
+import ApiDocsPage from '../../../../components/apidocs'
+const index = () => {
   return (
-    <div>ApiDocsPage</div>
+    <ApiDocsPage/>
   )
 }
 
-export default ApiDocsPage
+export default index

@@ -1,17 +1,15 @@
-import React from 'react'
-import Sidebar from '../Sidebar'
-import CreateTable from './CreateTable'
+import React from "react";
+import Sidebar from "../Sidebar";
+import CreateTable from "./CreateTable";
 const CreateTablePage = () => {
   return (
     <div className="flex">
-
-    <Sidebar/>
-    <div className="mx-auto">
-
-    <CreateTable />
+      <Sidebar />
+      <div className="mx-auto">
+        <CreateTable />
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default CreateTablePage
+export default CreateTablePage;
