@@ -1,9 +1,11 @@
-import React from 'react'
-import DetailedDocsPage from '../../../../../components/apidocs/DetailedDocs'
+import React from "react";
+import DetailedDocsPage from "../../../../../components/apidocs/DetailedDocs";
+import { useRouter } from "next/router";
 const ApiDocsDetailedPage = () => {
-  return (
-    <DetailedDocsPage/>
-  )
-}
+  const router = useRouter();
+  console.log(router.query);
 
-export default ApiDocsDetailedPage
+  return <DetailedDocsPage />;
+};
+
+export default ApiDocsDetailedPage;

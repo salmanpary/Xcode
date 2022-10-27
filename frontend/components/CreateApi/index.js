@@ -1,17 +1,15 @@
-import React from 'react'
-import Sidebar from "../Sidebar"
-import CreateApi from './CreateApi'
+import React from "react";
+import Sidebar from "../Sidebar";
+import CreateApi from "./CreateApi";
 const CreateApiPage = () => {
   return (
     <div className="flex">
-
-    <Sidebar/>
-    <div className="mx-auto">
-
-    <CreateApi />
+      <Sidebar />
+      <div className="mx-auto">
+        <CreateApi />
+      </div>
     </div>
-    </div>
-  )
-}
+  );
+};
 
-export default CreateApiPage
+export default CreateApiPage;
