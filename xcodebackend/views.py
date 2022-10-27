@@ -6,6 +6,8 @@ from django.contrib import auth
 from django.db import connection
 from .models import ListOfTables
 import json
+import openai
+
 
 # Create your views here.
 
@@ -127,3 +129,24 @@ def xcode(request, tablename):
         query = "SELECT * FROM "+table
     return JsonResponse({"msg":"under development"})
         
+
+@csrf_exempt
+def generatesnippet(request):
+
+    def gpt3(stext):
+        openai.api_key = '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'
+        response = openai.Completion.create(
+            engine = "davinci-instruct-beta",
+            prompt = stext, temperature=0.1, max_tokens=15, top_p=1, frequency_penalty=0, presence_penalty=0
+        )
+        content = response.choices[0].text.split('.')
+        # print(content)
+        return response.choices[0].text
+
+    # query = 'node js code for otp'
+    received_data = json.loads(request.body)
+    prompt = received_data['prompt']
+    response = gpt3(prompt)
+    # print(response)
+    # print(type(response))
+    return JsonResponse({"snippet":response})
