@@ -1,4 +1,4 @@
-import CreateTable from "../components/CreateTable"
+import CreateTable from "../components/Createtable/CreateTable"
 import Sidebar from "../components/Sidebar"
 
 export default function Home() {

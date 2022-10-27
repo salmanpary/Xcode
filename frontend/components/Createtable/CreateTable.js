@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import FormBlock from './FormBlock'
+import FormBlock from '../FormBlock'
 
 function CreateTable() {
     const [inputList, setInputList] = useState(1);

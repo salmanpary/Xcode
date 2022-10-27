@@ -1,6 +1,6 @@
 import React,{useState} from 'react'
 import {AiOutlineDown,AiOutlineUp,AiOutlineTwitter,AiOutlineInstagram,AiOutlineFacebook} from 'react-icons/ai'
-
+import Link from 'next/link'
 const Sidebar = () => {
   const [toggle,setToggle] = useState(false)
   const [toggle2,setToggle2] = useState(false)
@@ -15,7 +15,9 @@ const Sidebar = () => {
         <h3 className='text-3xl font-bold text-text-prm mt-12 cursor-pointer'>Home</h3>
         <h3 className='text-3xl font-bold text-text-prm mt-6 cursor-pointer'>Dashboard</h3>
         <div className="mt-12">
+<Link href = '/dashboard/createtable'>
         <h3 className='text-2xl cursor-pointer  text-text-prm mt6'>Create Table</h3>
+        </Link>
         <h3 onClick={()=>{
           setToggle(!toggle)
           setToggle2(false)
