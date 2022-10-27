@@ -9,8 +9,7 @@ import {
 } from "react-icons/ai";
 import Link from "next/link";
 const Sidebar = () => {
-    const router = useRouter();
-    console.log(router.pathname.includes("apidocs"));
+    const router = useRouter()
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   return (
