@@ -1,7 +1,19 @@
+import axios from 'axios'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect } from 'react'
 
 function Home() {
+    const fetch1 = async()=>{
+        const response = await axios.get('https://xcode321.herokuapp.com/getalltables')
+        console.log(response)
+    }
+    useEffect(()=>{
+      axios.get("https://xcode321.herokuapp.com/getalltable").then((res)=>{
+        console.log(res)
+      }).catch((error)=>{
+        console.log(error)
+      })
+    },[])
     return (
         <div style={{
             backgroundImage: `url('/bg.png')`,
