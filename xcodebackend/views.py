@@ -52,7 +52,7 @@ def createtable(request):
 
     received_data = json.loads(request.body)
     # print(str(received_data))/
-    t = ListOfTables.objects.get_or_create(owner=User.objects.get(username=str(request.user)), tablename=received_data['tablename'], tableschema=str(received_data))
+    t = ListOfTables.objects.get_or_create(owner=User.objects.get(username='admin'), tablename=received_data['tablename'], tableschema=str(received_data))
     # print(received_data)
 
     tablename = "xcodebackend_"+received_data['tablename']
@@ -74,12 +74,12 @@ def createtable(request):
     except:
         pass
 
-    user_tables = ListOfTables.objects.all().filter(owner=User.objects.get(username=str(request.user))).values_list( 'tableschema', flat=True)
+    user_tables = ListOfTables.objects.all().filter(owner=User.objects.get(username='admin')).values_list( 'tableschema', flat=True)
     user_tables = list(user_tables)
     # print(user_tables)
 
     responsetosend = {
-        "curruser":str(request.user),
+        "curruser":"admin",
         "tables":user_tables
     }
     
@@ -89,13 +89,13 @@ def createtable(request):
     
 # view for retrieving all the tables of the specified user   GET
 def getalltables(request):
-    responsetosend = {"curruser":""}
-    if(request.user.is_authenticated):
-        user_tables = ListOfTables.objects.all().filter(owner=User.objects.get(username=str(request.user))).values_list( 'tableschema', flat=True)
-        user_tables = list(user_tables)
-        # print(user_tables)
-        responsetosend = {
-            "curruser":str(request.user),
-            "tables":user_tables
-        }
+    # responsetosend = {"curruser":""}
+    
+    user_tables = ListOfTables.objects.all().filter(owner=User.objects.get(username="admin")).values_list( 'tableschema', flat=True)
+    user_tables = list(user_tables)
+    # print(user_tables)
+    responsetosend = {
+        "curruser":"admin",
+        "tables":user_tables
+    }
     return JsonResponse(responsetosend)
