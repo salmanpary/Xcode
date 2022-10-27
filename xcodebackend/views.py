@@ -99,3 +99,31 @@ def getalltables(request):
         "tables":user_tables
     }
     return JsonResponse(responsetosend)
+
+
+
+# generating the endpoint for different tables
+@csrf_exempt
+def geturl(request, tablename):
+    urlpoint = "https://xcode321.herokuapp.com/xcode/"
+    urlpoint = urlpoint + tablename + "/"
+    if request.method == 'GET':
+        return JsonResponse({"endpoint":urlpoint})
+    if request.method == 'POST':
+        return JsonResponse({"endpoint":urlpoint})
+    if request.method == 'PATCH':
+        return JsonResponse({"endpoint":urlpoint})
+    if request.method == 'DELETE':
+        return JsonResponse({"endpoint":urlpoint})
+
+
+
+# actual implementation of the provided endpoint
+@csrf_exempt
+def xcode(request, tablename):
+    table = "xcodebackend_"+tablename
+    cursor = connection.cursor()
+    if request.method == "GET":
+        query = "SELECT * FROM "+table
+    return JsonResponse({"msg":"under development"})
+        

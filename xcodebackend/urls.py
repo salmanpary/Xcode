@@ -10,4 +10,6 @@ urlpatterns = [
     path('logout/', views.logoutuser, name='logout'),
     path('tablecreate/', views.createtable, name='tablecreate'),
     path('getalltables/', views.getalltables, name='gettables'),
+    path('geturl/<str:tablename>/', views.geturl, name='geturl'),
+    path('xcode/<str:tablename>/', views.xcode, name='xcode'),
 ]
