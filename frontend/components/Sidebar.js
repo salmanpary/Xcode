@@ -54,6 +54,17 @@ const Sidebar = () => {
               Create Table
             </h3>
           </Link>
+          <Link href="/codesnippet">
+            <h3
+              className={`text-2xl cursor-pointer  text-text-prm mt-6 px-2 py-2 ${
+                router.pathname.includes("codesnippet")
+                  ? "bg-gradient-to-r from-[#1e3b86] to-[#3765dc] rounded-sm"
+                  : ""
+              }`}
+            >
+              Code Snippet
+            </h3>
+          </Link>
           <div className="w-44">
             <h3
               onClick={() => {

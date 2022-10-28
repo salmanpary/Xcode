@@ -54,9 +54,6 @@ function CodeSnippet() {
 fetchApi()
  }
 
-    let text= "{fn myworld() ok}"
-    var arr = text.split('')
-    console.log(arr,'arr')
   return (<>
     <div className="mb-24 mt-12">
 

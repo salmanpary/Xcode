@@ -1,6 +1,6 @@
 const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-    apiKey: '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'  })
+    apiKey: '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'  })
 
 export default async (req, res) => {
   let prompt = 'node js code for login';
