@@ -109,7 +109,7 @@ const ApiDocs = () => {
             DELETE
           </div>
 
-          <div className="bg-[#fae7e7] border border-[#f93e3e] px-4 py-2 rounded-r-md flex justify-around items-center ">
+          <div className="bg-[#fae7e7] border border-[#f93e3e] px-4 py-2 rounded-r-md flex justify-around items-center d">
             <div>{`https://xcode321.herokuapp.com/xcode/${router.query.tablename}`}</div>
             <button
               className="w-16 bg-[#041541] text-white py-[0.3px] rounded-md"
