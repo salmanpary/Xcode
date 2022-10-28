@@ -45,22 +45,20 @@ const Sidebar = () => {
         <div className="mt-12">
           <Link href="/dashboard/createtable">
             <h3
-              className={`text-2xl cursor-pointer  text-text-prm mt6 px-2 py-2 ${
-                router.pathname.includes("createtable")
+              className={`text-2xl cursor-pointer  text-text-prm mt6 px-2 py-2 ${router.pathname.includes("createtable")
                   ? "bg-gradient-to-r from-[#1e3b86] to-[#3765dc] rounded-sm"
                   : ""
-              }`}
+                }`}
             >
               Create Table
             </h3>
           </Link>
           <Link href="/codesnippet">
             <h3
-              className={`text-2xl cursor-pointer  text-text-prm mt-6 px-2 py-2 ${
-                router.pathname.includes("codesnippet")
+              className={`text-2xl cursor-pointer  text-text-prm mt-6 px-2 py-2 ${router.pathname.includes("codesnippet")
                   ? "bg-gradient-to-r from-[#1e3b86] to-[#3765dc] rounded-sm"
                   : ""
-              }`}
+                }`}
             >
               Code Snippet
             </h3>
@@ -71,11 +69,10 @@ const Sidebar = () => {
                 setToggle(!toggle);
                 setToggle2(false);
               }}
-              className={` text-2xl flex items-center text-text-prm mt-8 cursor-pointer h-10 px-2 py-2 ${
-                router.pathname.includes("createapi")
+              className={` text-2xl flex items-center text-text-prm mt-8 cursor-pointer h-10 px-2 py-2 ${router.pathname.includes("createapi")
                   ? "bg-gradient-to-r from-[#1e3b86] to-[#3765dc] rounded-sm"
                   : ""
-              }`}
+                }`}
             >
               Create API
               {toggle ? (
@@ -91,7 +88,7 @@ const Sidebar = () => {
                 {tables?.map((data) => {
                   return (
                     <Link href={`/dashboard/createapi/${data.tablename}`}>
-                      <li>{data.tablename}</li>
+                      <li className="mt-2">{data.tablename}</li>
                     </Link>
                   );
                 })}
@@ -110,11 +107,10 @@ const Sidebar = () => {
               setToggle2(!toggle2);
               setToggle(false);
             }}
-            className={`text-2xl flex items-center  text-text-prm mt-8 cursor-pointer px-2 py-2 ${
-              router.pathname.includes("apidocs")
+            className={`text-2xl flex items-center  text-text-prm mt-8 cursor-pointer px-2 py-2 ${router.pathname.includes("apidocs")
                 ? "bg-gradient-to-r from-[#1e3b86] to-[#3765dc] rounded-sm"
                 : ""
-            }`}
+              }`}
           >
             API Docs
             {toggle2 ? (
@@ -127,12 +123,12 @@ const Sidebar = () => {
             <div className="text-xl text-text-prm p-4">
               <ul className="cursor-pointer">
                 {tables?.map((data) => {
-                    return (
-                        <Link href={`/dashboard/apidocs/${data.tablename}`}>
-                            <li>{data.tablename}</li>
-                        </Link>
-                    );
-                })} 
+                  return (
+                    <Link href={`/dashboard/apidocs/${data.tablename}`}>
+                      <li className="mt-2">{data.tablename}</li>
+                    </Link>
+                  );
+                })}
               </ul>
             </div>
           )}
