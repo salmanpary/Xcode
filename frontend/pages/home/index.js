@@ -9,7 +9,10 @@ function Home() {
     }
     useEffect(()=>{
       axios.get("https://xcode321.herokuapp.com/getalltables").then((res)=>{
+        // console.log(res)
+        // op = JSON.parse(res.data.tables)
         console.log(res)
+        
       }).catch((error)=>{
         console.log(error)
       })
