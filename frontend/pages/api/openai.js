@@ -1,18 +1,17 @@
-import { Configuration, OpenAIApi } from "openai";
-
+const { Configuration, OpenAIApi } = require("openai");
 const configuration = new Configuration({
-    apiKey: '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',
+    apiKey: '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'  })
+
+export default async (req, res) => {
+  let prompt = 'node js code for login';
+  console.log(prompt,'prompt')
+  const openai = new OpenAIApi(configuration);
+const response = await openai.createCompletion({
+  model: "text-davinci-002",
+  prompt: prompt,
+  max_tokens: 100,
+  temperature: 0.9,
 });
-const openai = new OpenAIApi(configuration);
 
-export default async function Handler(req, res) {
-    const { prompt } = req.body;
-
-    const response = await openai.createCompletion({
-        model: "text-davinci-002",
-        prompt: prompt,
-        max_tokens: 10,
-        temperature: 0.1,
-    });
-    res.send(response)
+  res.status(200).json({text: `${response.data.choices[0].text}`})
 }
