@@ -11,18 +11,16 @@ import Link from "next/link";
 import axios from "axios";
 
 const Sidebar = () => {
-  
   const router = useRouter();
-  const [tables,settables]=useState()
+  const [tables, settables] = useState();
   const [toggle, setToggle] = useState(false);
   const [toggle2, setToggle2] = useState(false);
   useEffect(() => {
     axios
       .get("https://xcode321.herokuapp.com/getalltables/")
       .then((res) => {
-        const myjson=res.data.tables.replace(/&quot;/ig,'"')
-        console.log(JSON.parse(myjson))
-       settables(res.data)
+        console.log(res.data.tables);
+        settables(res.data.tables);
       })
       .catch((error) => {
         console.log(error);
@@ -37,9 +35,9 @@ const Sidebar = () => {
           <AiOutlineTwitter className="cursor-pointer hover:scale-110" />
         </div>
         <Link href="/">
-        <h3 className="text-3xl font-bold text-text-prm mt-12 cursor-pointer">
-          Home
-        </h3>
+          <h3 className="text-3xl font-bold text-text-prm mt-12 cursor-pointer">
+            Home
+          </h3>
         </Link>
         <h3 className="text-3xl font-bold text-text-prm mt-6 cursor-pointer">
           Dashboard
@@ -79,15 +77,20 @@ const Sidebar = () => {
           {toggle && (
             <div className="text-lg text-text-prm p-4">
               <ul className="cursor-pointer">
-                <Link href={"/dashboard/createapi/table1"}>
-                  <li>-Table1</li>
-                </Link>
+                {tables?.map((data) => {
+                  return (
+                    <Link href={`/dashboard/createapi/${data.tablename}`}>
+                      <li>{data.tablename}</li>
+                    </Link>
+                  );
+                })}
+                {/*                 
                 <Link href={"/dashboard/createapi/table2"}>
                   <li>-Table2</li>
                 </Link>
                 <Link href={"/dashboard/createapi/table3"}>
                   <li>-Table3</li>
-                </Link>
+                </Link> */}
               </ul>
             </div>
           )}
@@ -112,15 +115,13 @@ const Sidebar = () => {
           {toggle2 && (
             <div className="text-xl text-text-prm p-4">
               <ul className="cursor-pointer">
-                <Link href="/dashboard/apidocs/table1">
-                  <li>-Table1</li>
-                </Link>
-                <Link href="/dashboard/apidocs/table2">
-                  <li>-Table2</li>
-                </Link>
-                <Link href="/dashboard/apidocs/table3">
-                  <li>-Table3</li>
-                </Link>
+                {tables?.map((data) => {
+                    return (
+                        <Link href={`/dashboard/apidocs/${data.tablename}`}>
+                            <li>{data.tablename}</li>
+                        </Link>
+                    );
+                })} 
               </ul>
             </div>
           )}

@@ -4,7 +4,7 @@ function FormBlock({key,setTables,tables}) {
     const [data,setData] = useState({
         key:key,
         name:"",
-        type:"",
+        type:"STRING",
         validation:""
 
     })
