@@ -1,40 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
+import axios from "axios";
 import { useRouter } from "next/router";
 const ApiDocs = () => {
+  const [tables, settables] = React.useState([]);
+
   const router = useRouter();
-  console.log(router.query);
-  const ar = [
-    {
-      name: "fasd",
-      type: "fasdfa",
-    },
-    {
-      name: "fdfadasd",
-      type: "fasdfa",
-    },
-    {
-      name: "fasd",
-      type: "fasdfa",
-    },
-  ];
-  const ar2 = [
-    {
-      request: "get",
-      url: "/api/v1/auth/login",
-    },
-    {
-      request: "post",
-      url: "/api/v1/auth/login",
-    },
-    {
-      request: "update",
-      url: "/api/v1/auth/login",
-    },
-    {
-      request: "delete",
-      url: "/api/v1/auth/login",
-    },
-  ];
+  console.log(router.query.tablename);
+  const filterarray = (arr) => {
+    const filteredarray = arr.filter((table) => {
+      return table.tablename === router.query.tablename;
+    });
+    console.log(filteredarray[0]?.fields);
+    //return fieldsarray in each array of object
+    return filteredarray[0]?.fields;
+  };
+  console.log(filterarray(tables));
+
+  useEffect(() => {
+    axios
+      .get("https://xcode321.herokuapp.com/getalltables/")
+      .then((res) => {
+        console.log(res.data.tables);
+        settables(res.data.tables);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   return (
     <div className="flex flex-col justify-center items-center">
       <h1 className="text-xl font-bold">Schema</h1>
@@ -47,11 +40,13 @@ const ApiDocs = () => {
         </div>
       </div>
 
-      {ar.map((item) => {
+      {filterarray(tables)?.map((item) => {
         return (
           <div className="flex px-2 py-0 ">
             <div className="border py-2 w-[13rem] px-2">{item.name}</div>
-            <div className="border  py-2 w-[13rem] px-2">{item.type}</div>
+            <div className="border  py-2 w-[13rem] px-2">
+              {item.type === "" ? "NA" : item.type}
+            </div>
           </div>
         );
       })}
@@ -62,8 +57,8 @@ const ApiDocs = () => {
             GET
           </div>
 
-          <div className="bg-[#e8f6f0] border border-[#49cc90] px-4 py-2 rounded-r-md flex justify-around items-center w-72">
-            <div>/alf/aads/</div>
+          <div className="bg-[#e8f6f0] border border-[#49cc90] px-4 py-2 rounded-r-md flex justify-around items-center ">
+            <div>{`https://xcode321.herokuapp.com/xcode/${router.query.tablename}`}</div>
             <button
               className="w-16 bg-[#041541] text-white py-[0.3px] rounded-md"
               onClick={() => {
@@ -79,8 +74,8 @@ const ApiDocs = () => {
             POST
           </div>
 
-          <div className="bg-[#ebf3fb] border border-[#61aafe] px-4 py-2 rounded-r-md flex justify-around items-center w-72">
-            <div>/alf/aads/</div>
+          <div className="bg-[#ebf3fb] border border-[#61aafe] px-4 py-2 rounded-r-md flex justify-around items-center ">
+            <div>{`https://xcode321.herokuapp.com/xcode/${router.query.tablename}`}</div>
             <button
               className="w-16 bg-[#041541] text-white py-[0.3px] rounded-md"
               onClick={() => {
@@ -96,8 +91,8 @@ const ApiDocs = () => {
             UPDATE
           </div>
 
-          <div className="bg-[#fbf1e6] border border-[#fca130] px-4 py-2 rounded-r-md flex justify-around items-center w-72">
-            <div>/alf/aads/</div>
+          <div className="bg-[#fbf1e6] border border-[#fca130] px-4 py-2 rounded-r-md flex justify-around items-center">
+            <div>{`https://xcode321.herokuapp.com/xcode/${router.query.tablename}`}</div>
             <button
               className="w-16 bg-[#041541] text-white py-[0.3px] rounded-md"
               onClick={() => {
@@ -114,8 +109,8 @@ const ApiDocs = () => {
             DELETE
           </div>
 
-          <div className="bg-[#fae7e7] border border-[#f93e3e] px-4 py-2 rounded-r-md flex justify-around items-center w-72">
-            <div>/alf/aads/</div>
+          <div className="bg-[#fae7e7] border border-[#f93e3e] px-4 py-2 rounded-r-md flex justify-around items-center ">
+            <div>{`https://xcode321.herokuapp.com/xcode/${router.query.tablename}`}</div>
             <button
               className="w-16 bg-[#041541] text-white py-[0.3px] rounded-md"
               onClick={() => {
